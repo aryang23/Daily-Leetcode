@@ -1,41 +1,72 @@
 /**
  * Definition for singly-linked list.
- * struct ListNode {
+ * public class ListNode {
  *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
  */
 class Solution {
-public:
-    ListNode* reverseKGroup(ListNode* head, int k) {
-        ListNode* curr=head; ListNode* next=NULL;
-        ListNode* prev=NULL;
-        int count=0;
-         
-        ListNode*temp=head;
-        while(temp && count<k)
+    private static ListNode th = null, tt = null;
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(head == null || head.next == null || k<=1)
+            return head;
+        
+        int len = length(head);
+        ListNode curr = head, oh = null, ot = null;
+        while(len>=k)
         {
-            temp=temp->next;
-            count++;
+            int tempK = k;
+            while(tempK-- > 0)
+            {
+                ListNode forw = curr.next;
+                curr.next = null;
+                addFirstNode(curr);
+                curr = forw;
+            }
+            if(oh==null)
+            {
+                oh = th;
+                ot = tt;
+            }
+            else
+            {
+                ot.next = th;
+                ot = tt;
+            }
+            th = tt = null;
+            len -= k;
         }
-        if(count<k)return head;
-        count=0;
-        while(curr!=NULL and count<k)
-        {
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-            count++;
-        }
-        if(next!=NULL)
-        {
-            ListNode* res_head=reverseKGroup(next,k);
-            head->next=res_head;
-        }
-        return prev;
+        ot.next = curr;
+        return oh;
     }
-};
+    public static int length(ListNode head)
+    {
+        if(head==null)
+        {
+            return 0;
+        }
+
+        int len = 0;
+        ListNode curr = head;
+        while(curr!=null)
+        {
+            curr = curr.next;
+            len++;
+        }
+        return len;
+    }
+    
+    public static void addFirstNode(ListNode node)
+    {
+        if(th==null)
+            th = tt = node;
+        else
+        {
+            node.next = th;
+            th = node;
+        }
+    }
+}
