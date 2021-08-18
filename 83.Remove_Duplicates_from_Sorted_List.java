@@ -9,7 +9,7 @@
  * }
  */
 class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicates2(ListNode head) {
         ListNode fakeHead = new ListNode(-1);
         ListNode prev = fakeHead;
         fakeHead.next = head;
@@ -26,5 +26,29 @@ class Solution {
         }
         return fakeHead.next;
         
+    }
+    
+    public ListNode deleteDuplicates(ListNode head)
+    {
+        if(head==null || head.next==null)
+            return head;
+        
+        ListNode prev = head;
+        ListNode curr = head.next;
+        while(curr!=null)
+        {
+            while(curr!=null && curr.val==prev.val)
+            {
+                ListNode forw = curr.next;
+                curr.next = null;
+                curr = forw;
+            }
+            
+            prev.next = curr;
+            prev = curr;
+            if(curr!=null)
+                curr = curr.next;
+        }
+        return head;
     }
 }
