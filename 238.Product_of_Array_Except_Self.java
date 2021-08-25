@@ -1,5 +1,5 @@
 class Solution {
-    public int[] productExceptSelf(int[] nums) {
+    public int[] productExceptSelf2(int[] nums) {
         int n = nums.length;
         
         int[] left = new int[n], right = new int[n];
@@ -28,4 +28,28 @@ class Solution {
         }
         return ans;
     }
+    
+    public int[] productExceptSelf(int[] nums)
+    {
+        int n = nums.length;
+        int[] right = new int[n];
+        right[n-1] = nums[n-1];
+        for(int i=n-2;i>=0;i--)
+        {
+            right[i] = right[i+1]*nums[i];
+        }
+        
+        
+        int[] ans = new int[n];
+        int leftProd = 1;
+        for(int i=0;i<n-1;i++)
+        {
+            ans[i] = leftProd*right[i+1];
+            leftProd*=nums[i];
+        }
+        
+        ans[n-1] = leftProd;
+        return ans;
+    }
+    
 }
