@@ -6,9 +6,7 @@ class Solution {
         {
             int mid = (lo+hi)/2;
             if(nums[mid]==target)
-            {
                 return mid;
-            }
             else if(nums[mid]>target)
                 hi = mid-1;
             else
