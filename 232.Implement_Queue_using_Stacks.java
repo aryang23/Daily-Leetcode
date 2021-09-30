@@ -1,8 +1,10 @@
-class MyStack {
+class MyQueue {
+    
     LinkedList<Integer> st = new LinkedList<>();
     LinkedList<Integer> temp = new LinkedList<>();
-    public MyStack() {
-        que = new Queue<>();
+        
+    public MyQueue() {
+        
     }
     
     public void push(int x) {
@@ -19,22 +21,26 @@ class MyStack {
         swapData(st, temp);
         int rv = temp.removeFirst();
         swapData(temp, st);
+        return rv;
     }
     
-    public int top() {
+    public int peek() {
         swapData(st, temp);
+        int rv = temp.getFirst();
+        swapData(temp, st);
+        return rv;
     }
     
     public boolean empty() {
-        
+        return this.st.size()==0;
     }
 }
 
 /**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
  * obj.push(x);
  * int param_2 = obj.pop();
- * int param_3 = obj.top();
+ * int param_3 = obj.peek();
  * boolean param_4 = obj.empty();
  */
