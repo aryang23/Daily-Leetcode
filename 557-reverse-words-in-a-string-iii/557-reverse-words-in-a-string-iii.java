@@ -1,30 +1,16 @@
 class Solution {
     public String reverseWords(String s) {
-        List<String> list = new ArrayList<>();
-        int i=0, n=s.length();
-        while(i<n)
-        {
-            char ch = s.charAt(i);
-            String temp = "";
-            while(i<n && ch!=' ')
-            {
-                temp += ch+"";
-                i++;
-                if(i>=n)
-                    break;
-                ch = s.charAt(i);
-            }
-            i++;
-            list.add(temp);
-            temp = "";
-        }
+        
+        String[] list = s.split(" ");
         String ans = "";
-        for(int j=0;j<list.size();j++)
+        
+        for(int i=0;i<list.length;i++)
         {
-            String str = list.get(j);
-            String reverse = new StringBuilder(str).reverse().toString();
-            ans += reverse + " ";
+            String str = list[i];
+            String res = new StringBuilder(str).reverse().toString();
+            ans += res + " ";
         }
+        
         ans = ans.trim();
         return ans;
     }
