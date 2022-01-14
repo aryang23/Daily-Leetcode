@@ -9,6 +9,8 @@ class Solution {
     }
     public int smallestDivisor(int[] nums, int threshold) {
         int max = Integer.MAX_VALUE;
+        for(int val : nums)
+            max = Math.max(max, val);
         
         int lo = 1;
         int hi = max;
