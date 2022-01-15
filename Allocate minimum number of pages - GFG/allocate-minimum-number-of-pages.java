@@ -43,7 +43,6 @@ class Solution
                 student++;
                 sum = pages[i];
             }
-            
         }
         return student <= m;
     }
