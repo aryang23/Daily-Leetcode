@@ -16,7 +16,7 @@ class Solution {
         return -1;
     }
     
-    public int canCompleteCircuit(int[] gas, int[] cost) {
+    public int canCompleteCircuit3(int[] gas, int[] cost) {
         int n = gas.length;
         int tank = 0, total = 0, index = 0;
         for(int i=0;i<n;i++) {
@@ -25,9 +25,25 @@ class Solution {
             if(tank < 0) {
                 index = i + 1;
                 tank = 0;
+                total = 0;
             }
             total += consume;
         }
         return total<0?-1 : index;
+    }
+    
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int n = gas.length;
+        int tank = 0, total = 0, index = 0;
+        for(int i=0; i<n; i++) {
+            int consume = gas[i] - cost[i];
+            tank += consume;
+            if(tank < 0) {
+                index = i + 1;
+                tank = 0;
+            }
+            total += consume;
+        }
+        return total < 0?-1:index;
     }
 }
