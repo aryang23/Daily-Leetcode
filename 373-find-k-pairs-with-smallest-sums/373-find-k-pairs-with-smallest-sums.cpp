@@ -1,26 +1,24 @@
 class Solution {
 public:
+    struct cmp {
+        bool operator()(pair<int, int> const& p1, pair<int, int> const& p2) {
+            return p1.first + p1.second > p2.first+p2.second;
+        }
+    };
     vector<vector<int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        priority_queue<pair<int, int>, vector<pair<int, int>>,cmp> pq;
+        for(int i=0; i<min((int)nums1.size(), k); i++) {
+            for(int j=0; j<min((int)nums2.size(), k); j++) {
+                pq.push({nums1[i], nums2[j]});
+            }
+        }
+        
         vector<vector<int>> ans;
-        int n = nums1.size(), m = nums2.size();
-        
-        if(n==0 || m==0)
-            return ans;
-        
-        priority_queue<tuple<int,int,int>> pq;
-        pq.push({-nums1[0]-nums2[0], 0, 0});
-        while(pq.size() && ans.size()<k) {
-            auto topp = pq.top();
-            int i = get<1>(topp);
-            int j = get<2>(topp);
+        while(k>0 && !pq.empty()) {
+            pair<int, int> t = pq.top();
+            ans.push_back({t.first, t.second});
             pq.pop();
-            ans.push_back({nums1[i], nums2[j]});
-            
-            if(j==0 && i+1<n)
-                pq.push({-nums1[i+1]-nums2[j], i+1, j});
-            
-            if(i<n && j+1<m)
-                pq.push({-nums1[i]-nums2[j+1], i, j+1});
+            k--;
         }
         return ans;
     }
