@@ -11,30 +11,25 @@ class Solution {
         if(len < window)
             return ans;
         
-        int left=0, right=0;
+        int left=0, right = 0;
         
-        while(right<window)
-        {
+        while(right < window) {
             phash[p.charAt(right)-'a']+=1;
-            hash[s.charAt(right++)-'a']+=1;
+            hash[s.charAt(right++)-'a'] += 1;
         }
         
-        right -= 1;
-        while(right < len)
-        {
-            // display(hash);
-            // display(phash);
+        right-=1;
+        while(right < len) {
             if(areEqual(hash, phash))
                 ans.add(left);
-            right += 1;
-            if(right != len)
+            right++;
+            if(right != len) 
                 hash[s.charAt(right)-'a'] += 1;
             hash[s.charAt(left)-'a'] -= 1;
-            left += 1;
+            left++;
         }
         return ans;
     }
-    
     public static boolean areEqual(int[] arr1, int[] arr2)
     {
         for(int i=0;i<arr1.length;i++)
@@ -43,12 +38,5 @@ class Solution {
                 return false;
         }
         return true;
-    }
-    public static void display(int[] dp) {
-        for (int ele : dp) 
-        {
-            System.out.print(ele + " ");
-        }
-        System.out.println();
     }
 }
