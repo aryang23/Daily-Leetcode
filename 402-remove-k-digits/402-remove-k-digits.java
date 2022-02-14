@@ -18,6 +18,15 @@ class Solution {
         if(st.size()==0) {
             return "0";
         }
+        // StringBuilder sb = new StringBuilder("");
+        // while(st.size()>0) {
+        //     sb.append(st.pop());
+        // }
+        // sb.reverse();
+        // // Collections.reverse(sb);
+        // String ans = sb.toString();
+        // int a2 = Integer.parseInt(ans);
+        // return (a2+"");
         char[] arr = new char[st.size()];
         int idx = arr.length-1;
         
@@ -36,14 +45,7 @@ class Solution {
             }
         }
         return sb.toString().substring(fnz);
-//         while(st.size()>0) {
-//             sb.append(st.pop());
-//         }
-//         sb.reverse();
-//         // Collections.reverse(sb);
-//         String ans = sb.toString();
-//         int a2 = Integer.parseInt(ans);
-//         return (a2+"");
+        
 //         int fnz = -1;
 //         int idx = 0;
 //         while(idx<ans.length() && ans.charAt(idx)=='0') {
