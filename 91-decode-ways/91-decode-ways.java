@@ -6,7 +6,8 @@ class Solution {
         Arrays.fill(dp, -1);
         // int ans = numDecodingsHelper(s);
         // int ans = countEncodings(s);
-        int ans = numDecodings(s, 0, dp);
+        // int ans = numDecodings(s, 0, dp);
+        int ans = numDecodingsTab(s, 0, dp);
         return ans;
    }
     public int numDecodingsHelper(String str) {
@@ -86,5 +87,31 @@ class Solution {
             }
         }
         return dp[idx] = count;
+    }
+    
+    public int numDecodingsTab(String s, int IDX, int[] dp) {
+        for(int idx=s.length(); idx>=0; idx--) {
+            if(idx == s.length()) {
+                dp[idx] = 1;
+                continue;
+            }
+            
+            char ch = s.charAt(idx);
+            if(ch == '0') {
+                dp[idx] = 0;
+                continue;
+            }
+            
+            int count = dp[idx+1];
+            if(idx < s.length()-1)
+            {
+                char ch1 = s.charAt(idx+1);
+                int num = (ch-'0')*10+(ch1-'0');
+                if(num<=26)
+                    count += dp[idx+2];//numDecodings(s, idx+2, dp);
+            }
+            dp[idx] = count;
+        }
+        return dp[IDX];
     }
 }
