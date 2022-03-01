@@ -1,28 +1,9 @@
 class Solution {
     public int[] countBits(int n) {
-        
-        int[] arr = new int[n+1];
-        int arrPtr = 0;
-        
-        for(int i=0;i<=n;i++)
-        {
-            int sa = countSetBits(i);
-            arr[arrPtr]=sa;
-            arrPtr++;
+        int[] ans = new int[n+1];
+        for(int i=0; i<=n; i++) {
+            ans[i] = ans[i>>1]+(i&1);
         }
-        
-        return arr;
-        
-    }
-    
-    public int countSetBits(int n)
-    {
-        int count = 0;
-        while(n != 0)
-        {
-            count++;
-            n&=(n-1);
-        }
-        return count;
+        return ans;
     }
 }
