@@ -55,7 +55,7 @@ class Solution {
         return false;
     }
     
-    public boolean isValiid(String s) {
+    public boolean isValid2(String s) {
         if(s.length()%2 != 0)
             return false;
         
