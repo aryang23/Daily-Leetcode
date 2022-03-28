@@ -7,9 +7,9 @@ class Solution {
     
     public boolean containsTarget(int [] nums, int start, int end, int target){
         
-        if (end < start) return false;
-        
-        else {
+        if (end < start) {
+            return false;
+        } else {
             int mid = (start + end) / 2 ;
             if (nums[mid] == target) return true;
 
