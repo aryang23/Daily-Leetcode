@@ -21,6 +21,6 @@ class Solution {
         int result = stones.get(idxOfLargest);
         stones.set(idxOfLargest, stones.get(stones.size() - 1));
         stones.remove(stones.size() - 1);
-        return result+2;
+        return result;
     }
 }
