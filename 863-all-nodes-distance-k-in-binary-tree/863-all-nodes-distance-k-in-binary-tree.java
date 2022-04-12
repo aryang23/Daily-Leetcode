@@ -55,10 +55,14 @@ class Solution {
     return la;
   }
     
-    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+    public List<Integer> distanceK1(TreeNode root, TreeNode target, int k) {
         ArrayList<TreeNode> path = new ArrayList<>();
         nodeToRootPath_(root, target.val, path);
+        for(int i=0; i<path.size(); i++) {
+            System.out.println(path.get(i).val);
+        }
         // path = nodeToRootPath(root, target.val);
+        // Collections.reverse(path);
         
         TreeNode block = null;
         List<Integer> ans = new ArrayList<>();
@@ -81,5 +85,36 @@ class Solution {
         
         kDown(root.left, k-1, block, ans);
         kDown(root.right, k-1, block, ans);
+    }
+    
+    public int distanceK(TreeNode root, TreeNode target, int k, List<Integer> ans) {
+        if(root==null) {
+            return -1;
+        }
+        
+        if(root==target) {
+            kDown(root, k, null, ans);
+            return 1;
+        }
+        
+        int ld = distanceK(root.left, target, k, ans);
+        if(ld != -1) {
+            kDown(root, k-ld, root.left, ans);
+            return ld+1;
+        }
+        
+        int rd = distanceK(root.right, target, k, ans);
+        if(rd != -1) {
+            kDown(root, k-rd, root.right, ans);
+            return rd+1;
+        }
+        
+        return -1;
+    }
+    
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        List<Integer> ans = new ArrayList<>();
+        distanceK(root, target, k, ans);
+        return ans;
     }
 }
