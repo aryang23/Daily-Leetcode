@@ -14,44 +14,27 @@
  * }
  */
 class Solution {
-    public static TreeNode getRightMostNode(TreeNode node, TreeNode curr) {
-        while (node.right != null && node.right != curr) {
-            node = node.right;
+    public static void insertAllLeft(TreeNode node, LinkedList<TreeNode> st) {
+        while(node != null) {
+            st.addFirst(node);
+            node = node.left;
         }
-
-        return node;
     }
+
     public boolean isValidBST(TreeNode root) {
-        TreeNode curr = root;
-        long prev = -(long) 1e13;
-        while(curr != null) {
-            TreeNode left = curr.left;
-            if(left == null) {
-                if(prev >= curr.val) {
-                    return false;
-                }
-                prev = curr.val;
-                
-                
-                curr = curr.right;
-            } else {
-                TreeNode rightMostNode = getRightMostNode(left, curr);
-                if(rightMostNode.right == null) {
-                    //Thread Creation Block
-                    rightMostNode. right = curr;
-                    curr = curr.left;
-                } else {
-                    //Thread Destroy Block
-                    rightMostNode.right = null;
-                    
-                    if(prev >= curr.val) {
-                        return false;
-                    }
-                    prev = curr.val;
-                    
-                    curr = curr.right;
-                }
+        LinkedList<TreeNode> st = new LinkedList<>();
+        insertAllLeft(root, st);
+        long prev = -(long)1e13;
+
+        while(st.size() != 0) {
+            TreeNode rNode = st.removeFirst();
+
+            if(prev >= rNode.val) {
+                return false;
             }
+            prev = rNode.val;
+
+            insertAllLeft(rNode.right, st);
         }
         return true;
     }
