@@ -1,9 +1,10 @@
 class MyStack {
-    LinkedList<Integer> queue = new LinkedList<>();
-    LinkedList<Integer> temp = new LinkedList<>();
+    LinkedList<Integer> queue;
+    LinkedList<Integer> temp;
     public int topEle = 0;
     public MyStack() {
-        
+        queue = new LinkedList<>();
+        temp = new LinkedList<>();
     }
     
     public void push(int x) {
