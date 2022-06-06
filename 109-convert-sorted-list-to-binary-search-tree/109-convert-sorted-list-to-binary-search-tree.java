@@ -34,7 +34,8 @@ class Solution {
             arr[k++] = temp.val;
             temp = temp.next;
         }
-        return buildTreeHelper(arr, 0, sz-1);
+        // return buildTreeHelper(arr, 0, sz-1);
+        return buildTreeHelper(head, 0, sz-1);
     }
     
     public int getSize(ListNode head) {
@@ -47,14 +48,26 @@ class Solution {
         return sz;
     }
     
-    public TreeNode buildTreeHelper(int[] nums, int lo, int hi) {
+    public TreeNode buildTreeHelper2(int[] nums, int lo, int hi) {
         if(lo > hi) {
             return null;
         }
         int mid = (lo+hi)/2;
         TreeNode node = new TreeNode(nums[mid]);
-        node.left = buildTreeHelper(nums, lo, mid-1);
-        node.right = buildTreeHelper(nums, mid+1, hi);
+        node.left = buildTreeHelper2(nums, lo, mid-1);
+        node.right = buildTreeHelper2(nums, mid+1, hi);
+        return node;
+    }
+    
+    public TreeNode buildTreeHelper(ListNode head, int lo, int hi) {
+        if(lo > hi) {
+            return null;
+        }
+        int mid = (lo+hi)/2;
+        ListNode midNode = getNodeAt(head, mid);
+        TreeNode node = new TreeNode(midNode.val);
+        node.left = buildTreeHelper(head, lo, mid-1);
+        node.right = buildTreeHelper(head, mid+1, hi);
         return node;
     }
     
