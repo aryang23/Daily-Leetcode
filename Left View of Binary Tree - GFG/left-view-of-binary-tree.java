@@ -125,37 +125,18 @@ class Tree
     ArrayList<Integer> leftView(Node root)
     {
       // Your code here
-      
       ArrayList<Integer> lv = new ArrayList<>();
-      if(root == null) {
-          return lv;
-      }
-      ArrayDeque<Node> q = new ArrayDeque<>();
-      
-      q.add(root);
-      
-      while(q.size() > 0 ) {
-          int count = q.size();
-          int fn = -1;
-          while(count-- > 0) {
-              //Remove
-              Node rem = q.remove();
-              if(fn == -1) {
-                  fn = rem.data;
-              }
-              //Work
-              
-              //Add
-              if(rem.left != null) {
-                  q.add(rem.left);
-              }
-              if(rem.right != null) {
-                  q.add(rem.right);
-              }
-          }
-          lv.add(fn);
-          fn = -1;
-      }
+      helper(root, 0, lv);
       return lv;
+    }
+    public void helper(Node node, int lev, ArrayList<Integer> lv) {
+        if(node == null) {
+            return;
+        }
+        if(lv.size() == lev) {
+            lv.add(node.data);
+        }
+        helper(node.left, lev+1, lv);
+        helper(node.right, lev+1, lv);
     }
 }
