@@ -15,34 +15,18 @@
  */
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> lv = new ArrayList<>();
-        if(root == null) {
-              return lv;
+        List<Integer> arr = new ArrayList<>();
+        helper(root, 0, arr);
+        return arr;
+    }
+    public void helper(TreeNode node, int lev, List<Integer> arr) {
+        if(node == null) {
+            return;
         }
-        ArrayDeque<TreeNode> q = new ArrayDeque<>();
-      
-        q.add(root);
-      
-        while(q.size() > 0 ) {
-            int count = q.size();
-            int ln = -1;
-            while(count-- > 0) {
-                //Remove
-                TreeNode rem = q.remove();
-                //Update at each value
-                ln = rem.val;
-                //Work
-
-                //Add
-                if(rem.left != null) {
-                    q.add(rem.left);
-                }
-                if(rem.right != null) {
-                    q.add(rem.right);
-                }
-             }
-            lv.add(ln);
+        if(lev == arr.size()) {
+            arr.add(node.val);
         }
-      return lv;
+        helper(node.right, lev+1, arr);
+        helper(node.left, lev+1, arr);
     }
 }
