@@ -16,14 +16,41 @@
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
-        pre(root, ans);
+        
+        TreeNode curr = root;
+        
+        while(curr != null) {
+            TreeNode ln = curr.left;
+            
+            if(ln == null) {
+                ans.add(curr.val);
+                curr = curr.right;
+            } else {
+                TreeNode rmn = getRightMostNode(ln, curr);
+                
+                if(rmn.right == null) {
+                    //Left Subtree not visited
+                    //Thread Creation Block
+                    ans.add(curr.val);
+                    rmn.right = curr;
+                    curr = curr.left;
+                } else {
+                    //Left Subtreee visited
+                    //Thread Destroying Block
+                    
+                    rmn.right = null;
+                    
+                    curr = curr.right;
+                }
+            }
+        }
         return ans;
     }
-    public void pre(TreeNode root, List<Integer> ans) {
-        if(root == null)
-            return;
-        ans.add(root.val);
-        pre(root.left, ans);
-        pre(root.right, ans);
+    public TreeNode getRightMostNode(TreeNode ln, TreeNode curr) {
+        TreeNode temp = ln;
+        while(temp.right != null && temp.right != curr) {
+            temp = temp.right;
+        }
+        return temp;
     }
 }
