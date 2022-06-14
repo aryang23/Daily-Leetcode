@@ -1,4 +1,3 @@
-
 public class Solution {
     public int minDistance(String s1, String s2) {
         int[][] memo = new int[s1.length() + 1][s2.length() + 1];
