@@ -3,16 +3,16 @@
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> s = "babad"
+<pre><strong>Input:</strong> s = "babad"
 <strong>Output:</strong> "bab"
 <strong>Explanation:</strong> "aba" is also a valid answer.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong>Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> s = "cbbd"
+<pre><strong>Input:</strong> s = "cbbd"
 <strong>Output:</strong> "bb"
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
