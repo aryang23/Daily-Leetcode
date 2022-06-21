@@ -36,7 +36,7 @@ class Solution {
         HashSet<Integer> vis_bus = new HashSet<>();
         
         q.add(new Pair(src, 0));
-        
+        vis_bus_stand.add(src);
         while(q.size() > 0) {
             //Remove
             Pair rem = q.remove();
