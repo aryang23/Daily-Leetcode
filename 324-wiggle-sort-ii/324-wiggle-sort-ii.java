@@ -1,23 +1,28 @@
 class Solution {
     public void wiggleSort(int[] nums) {
         Arrays.sort(nums);
-    int n=nums.length;
-    int res[]=new int[n];
-    int i=1;
-    int j=n-1;
-    while(i<n){
-      res[i]=nums[j];
-      i+=2;
-      j--;
-    }
-    i=0;
-    while(i<n){
-      res[i]=nums[j];
-      i+=2;
-      j--;
-    }
-    for(int k=0;k<n;k++){
-      nums[k]=res[k];
-    }
+        int[] ans = new int[nums.length];
+        
+        int i = 1;
+        int j = nums.length-1;
+        
+        //Travel odd len and fill sorted array right half in it
+        
+        while(i < nums.length) {
+            ans[i] = nums[j];
+            j--;
+            i+=2;
+        }
+        
+        i = 0;
+        while(i < nums.length) { 
+            ans[i] = nums[j];
+            j--;
+            i += 2;
+        }
+        
+        for(int k=0; k<nums.length; k++) {
+            nums[k] = ans[k];
+        }
     }
 }
