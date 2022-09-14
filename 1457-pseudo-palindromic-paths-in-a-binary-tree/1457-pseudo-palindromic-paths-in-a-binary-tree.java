@@ -17,10 +17,8 @@ class Solution {
     public int pseudoPalindromicPaths (TreeNode root) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int ans = fun(root, map);
-        // System.out.println(count);
         return ans;
     }
-    int count = 0;
     public int fun(TreeNode root, HashMap<Integer, Integer> map) {
         if(root==null) {
             return 0;
@@ -47,8 +45,6 @@ class Solution {
             if(isSing > 1) {
                 return 0;
             }
-            
-            count++;
             return 1;
         }
         //Root is here
