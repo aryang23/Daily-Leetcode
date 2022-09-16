@@ -1,4 +1,5 @@
 class Solution {
+    //i1 -> Starting Index, i2 -> Ending Index, i3 -> Index of Multipliers
     public int maximumScore(int[] nums, int[] multipliers) {
         int n = nums.length;
         int m = multipliers.length;
